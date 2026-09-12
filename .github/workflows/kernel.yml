@@ -34,7 +34,7 @@ jobs:
           sudo dnf install gcc clang lld repo bc flex openssl-devel openssl-devel-engine wget tar zstd bsdtar file rsync zip -y
       - name: Repo Sync
         run: |
-          repo init --depth=1 -u DevAyu-Codes/android_device_xiaomi_sunny-kernel -b seventeen
+          repo init --depth=1 -u https://github.com/aosp-sunny/android_kernel_manifest.git -b master 
           repo sync --no-tags --no-clone-bundle -j$(nproc --all)
       - name: GCC Build
         run: |
@@ -45,7 +45,7 @@ jobs:
         run: |
             git config --global user.name "DevAyu-Codes"
             git config --global user.email "ayushkumar274549@gmail.com"
-            git clone https://cyberknight777:${{ env.GH_TOKEN }}@github.com/${{ env.REPO }} -b ${{ env.BRANCH }} sunny-kernel
+            git clone https://DevAyu-Codes:${{ env.GH_TOKEN }}@github.com/${{ env.REPO }} -b ${{ env.BRANCH }} sunny-kernel
             cp out/${{ env.BRANCH }}/dist/Image sunny-kernel
             cp out/${{ env.BRANCH }}/dist/sm6150.dtb sunny-kernel/dtb/
             cp out/${{ env.BRANCH }}/dist/dtbo.img sunny-kernel
