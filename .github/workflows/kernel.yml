@@ -34,7 +34,7 @@ jobs:
           sudo dnf install gcc clang lld repo bc flex openssl-devel openssl-devel-engine wget tar zstd bsdtar file rsync zip -y
       - name: Repo Sync
         run: |
-          repo init --depth=1 -u https://github.com/aosp-sunny/android_kernel_manifest.git -b master
+          repo init --depth=1 -u ${{ env.MANIFEST_REPO }} -b ${{ env.MANIFEST_BRANCH }}
           repo sync --no-tags --no-clone-bundle -j$(nproc --all)
       - name: GCC Build
         run: |
